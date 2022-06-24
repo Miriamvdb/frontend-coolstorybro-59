@@ -4,9 +4,9 @@ import { fetchSpaces } from "../../store/space/actions";
 import { selectSpace } from "../../store/space/selectors";
 import Space from "../../components/Space";
 
-export default function Spaces() {
+export default function SpacesPage() {
   const dispatch = useDispatch();
-  const spaces = useSelector(selectSpace);
+  const allSpaces = useSelector(selectSpace);
 
   useEffect(() => {
     dispatch(fetchSpaces());
@@ -16,7 +16,7 @@ export default function Spaces() {
     <div>
       <h1>All Spaces</h1>
       <div className="container-allspaces">
-        {spaces.map((space) => {
+        {allSpaces.map((space) => {
           return (
             <Space
               key={space.id}

@@ -11,8 +11,8 @@ import Login from "./pages/Login";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAppLoading } from "./store/appState/selectors";
 import { getUserWithStoredToken } from "./store/user/actions";
-import Spaces from "./pages/SpacesPage";
-// import HeroBanner from "./components/HeroBanner";
+import SpacesPage from "./pages/SpacesPage";
+import SpacesDetailsPage from "./pages/SpaceDetailsPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,7 +28,8 @@ function App() {
       <MessageBox />
       {isLoading ? <Loading /> : null}
       <Routes>
-        <Route exact path="/" element={<Spaces />} />
+        <Route exact path="/" element={<SpacesPage />} />
+        <Route path="/spaces/:id" element={<SpacesDetailsPage />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
       </Routes>
