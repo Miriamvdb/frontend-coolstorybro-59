@@ -1,7 +1,7 @@
 export default function StoryCarousel(props) {
   return (
     <div>
-      {props.spaceWithStories.stories.map((story) => {
+      {props.stories.map((story) => {
         return (
           <div>
             <h1>{story.name}</h1>

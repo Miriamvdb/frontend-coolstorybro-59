@@ -18,6 +18,13 @@ export default function SpacesDetailsPage() {
 
   if (!spaceWithStories) return <div>Loading..</div>;
 
+  const stories = spaceWithStories.stories;
+
+  // Logic to sort the stories "createdAt"
+  const sortedStories = [...stories].sort(
+    (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+  );
+
   return (
     <div className="container-spacedetails-stories">
       <div className="container-spacedetails" key={spaceWithStories.id}>
@@ -32,7 +39,7 @@ export default function SpacesDetailsPage() {
       </div>
 
       <div className="container-stories">
-        <StoryCarousel spaceWithStories={spaceWithStories} />
+        <StoryCarousel stories={sortedStories} />
       </div>
     </div>
   );
