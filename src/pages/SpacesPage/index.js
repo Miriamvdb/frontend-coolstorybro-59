@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { fetchSpaces } from "../../store/space/actions";
 import { selectSpace } from "../../store/space/selectors";
 import Space from "../../components/Space";
+import { Link } from "react-router-dom";
 
 export default function SpacesPage() {
   const dispatch = useDispatch();
@@ -10,7 +11,7 @@ export default function SpacesPage() {
 
   useEffect(() => {
     dispatch(fetchSpaces());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div>
@@ -18,14 +19,19 @@ export default function SpacesPage() {
       <div className="container-allspaces">
         {allSpaces.map((space) => {
           return (
-            <Space
-              key={space.id}
-              id={space.id}
-              title={space.title}
-              description={space.description}
-              backgroundColor={space.backgroundColor}
-              color={space.color}
-            />
+            <div key={space.id}>
+              <Space
+                key={space.id}
+                id={space.id}
+                title={space.title}
+                description={space.description}
+                backgroundColor={space.backgroundColor}
+                color={space.color}
+              />
+              <Link to={`/spaces/${space.id}`}>
+                <button>Visit space</button>
+              </Link>
+            </div>
           );
         })}
       </div>

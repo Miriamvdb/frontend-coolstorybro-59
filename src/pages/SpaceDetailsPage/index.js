@@ -1,15 +1,34 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import Space from "../../components/Space";
 import { fetchSpaceWithStories } from "../../store/space/actions";
+import { selectSpaceWithStories } from "../../store/space/selectors";
 
 export default function SpacesDetailsPage() {
   const dispatch = useDispatch();
   const { id } = useParams();
+  const spaceWithStories = useSelector(selectSpaceWithStories);
+  console.log(spaceWithStories);
 
   useEffect(() => {
     dispatch(fetchSpaceWithStories(id));
   }, []);
 
-  return <div></div>;
+  if (!spaceWithStories) return <div>Loading..</div>;
+
+  return (
+    <div className="container-spacedetails">
+      <div key={spaceWithStories.id}>
+        <Space
+          key={spaceWithStories.id}
+          id={spaceWithStories.id}
+          title={spaceWithStories.title}
+          description={spaceWithStories.description}
+          backgroundColor={spaceWithStories.backgroundColor}
+          color={spaceWithStories.color}
+        />
+      </div>
+    </div>
+  );
 }

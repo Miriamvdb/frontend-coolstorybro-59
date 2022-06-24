@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 export default function Space(props) {
   return (
     <div
@@ -8,9 +6,6 @@ export default function Space(props) {
     >
       <h1>{props.title}</h1>
       <p>{props.description}</p>
-      <Link to={`/spaces/${props.id}`}>
-        <button>Visit space</button>
-      </Link>
     </div>
   );
 }
