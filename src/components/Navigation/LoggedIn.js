@@ -9,11 +9,13 @@ import NavbarItem from "./NavbarItem";
 export default function LoggedIn() {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
+  const userId = user ? user.id : " ";
+
   return (
     <>
-      <NavbarItem path="/myspace" linkText="My Space" />
+      <NavbarItem path={`/myspace/${userId}`} linkText="My Space" />
 
-      <Nav.Item style={{ padding: ".5rem 1rem" }}>{user?.email}</Nav.Item>
+      <Nav.Item style={{ padding: "1rem" }}>{user?.email}</Nav.Item>
       <Button onClick={() => dispatch(logOut())}>Logout</Button>
     </>
   );

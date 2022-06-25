@@ -19,14 +19,18 @@ export default function SpacesPage() {
       <div className="container-allspaces">
         {allSpaces.map((space) => {
           return (
-            <div key={space.id}>
+            <div
+              key={space.id}
+              style={{
+                backgroundColor: space.backgroundColor,
+                color: space.color,
+              }}
+            >
               <Space
                 key={space.id}
                 id={space.id}
                 title={space.title}
                 description={space.description}
-                backgroundColor={space.backgroundColor}
-                color={space.color}
               />
               <Link to={`/spaces/${space.id}`}>
                 <button>Visit space</button>

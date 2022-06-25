@@ -19,7 +19,7 @@ export const signUp = (name, email, password) => {
         loginSuccess({
           token: response.data.token,
           user: response.data.user,
-          space: response.data.space,
+          space: response.data.space, // Feature 4
         })
       );
       dispatch(showMessageWithTimeout("success", true, "account created"));
@@ -62,7 +62,7 @@ export const login = (email, password) => {
         loginSuccess({
           token: response.data.token,
           user: response.data.user,
-          space: response.data.space,
+          space: response.data.space, // Feature 4
         })
       );
       dispatch(showMessageWithTimeout("success", false, "welcome back!", 1500));
@@ -112,7 +112,7 @@ export const getUserWithStoredToken = () => {
       dispatch(
         tokenStillValid({
           user: response.data.user,
-          space: response.data.space,
+          space: response.data.space, // Feature 4
         })
       );
       dispatch(appDoneLoading());

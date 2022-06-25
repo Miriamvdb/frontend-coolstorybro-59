@@ -14,26 +14,29 @@ export default function SpacesDetailsPage() {
 
   useEffect(() => {
     dispatch(fetchSpaceWithStories(id));
-  }, []);
+  }, [dispatch, id]);
 
   if (!spaceWithStories) return <div>Loading..</div>;
 
-  const stories = spaceWithStories.stories;
-
   // Logic to sort the stories "createdAt"
+  const stories = spaceWithStories.stories;
   const sortedStories = [...stories].sort(
     (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
   );
 
   return (
-    <div className="container-spacedetails-stories">
+    <div
+      className="container-spacedetails-stories"
+      style={{
+        backgroundColor: spaceWithStories.backgroundColor,
+        color: spaceWithStories.color,
+      }}
+    >
       <div className="container-spacedetails" key={spaceWithStories.id}>
         <Space
           key={spaceWithStories.id}
           id={spaceWithStories.id}
           title={spaceWithStories.title}
-          description={spaceWithStories.description}
-          backgroundColor={spaceWithStories.backgroundColor}
           color={spaceWithStories.color}
         />
       </div>

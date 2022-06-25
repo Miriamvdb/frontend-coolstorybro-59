@@ -13,6 +13,7 @@ import { selectAppLoading } from "./store/appState/selectors";
 import { getUserWithStoredToken } from "./store/user/actions";
 import SpacesPage from "./pages/SpacesPage";
 import SpacesDetailsPage from "./pages/SpaceDetailsPage";
+import MySpacePage from "./pages/MySpacePage";
 
 function App() {
   const dispatch = useDispatch();
@@ -30,6 +31,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<SpacesPage />} />
         <Route path="/spaces/:id" element={<SpacesDetailsPage />} />
+        <Route path="/myspace/:userId" element={<MySpacePage />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
       </Routes>
