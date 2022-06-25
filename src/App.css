@@ -1,3 +1,8 @@
 img {
   width: 300px;
+  margin-bottom: 1.5rem;
+}
+
+div {
+  padding: 0.75rem;
 }

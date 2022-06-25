@@ -13,7 +13,7 @@ export default function LoggedIn() {
     <>
       <NavbarItem path="/myspace" linkText="My Space" />
 
-      <Nav.Item style={{ padding: ".5rem 1rem" }}>{user?.email}</Nav.Item>
+      <Nav.Item style={{ padding: "1rem" }}>{user?.email}</Nav.Item>
       <Button onClick={() => dispatch(logOut())}>Logout</Button>
     </>
   );

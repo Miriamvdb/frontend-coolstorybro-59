@@ -14,7 +14,7 @@ export default function SpacesDetailsPage() {
 
   useEffect(() => {
     dispatch(fetchSpaceWithStories(id));
-  }, []);
+  }, [dispatch, id]);
 
   if (!spaceWithStories) return <div>Loading..</div>;
 
