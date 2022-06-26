@@ -184,10 +184,8 @@ export const postNewStory = (name, content, imageUrl) => {
           },
         }
       );
-      console.log("Wanna post a new story?", response);
-      dispatch(
-        showMessageWithTimeout("Success", false, response.data.message, 3000)
-      );
+      console.log("Created a new story!", response);
+      dispatch(showMessageWithTimeout("Success", true, "Story created!", 3000));
       dispatch(storyPostSuccess(response.data.story));
       dispatch(appDoneLoading());
     } catch (e) {
