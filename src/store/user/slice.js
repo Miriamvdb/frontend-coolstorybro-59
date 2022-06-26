@@ -33,6 +33,10 @@ export const userSlice = createSlice({
         (spc) => spc.id !== storyId
       );
     },
+    // Feature 5: Post a new story with corresponding id
+    storyPostSuccess: (state, action) => {
+      state.space.stories.push(action.payload);
+    },
   },
 });
 
@@ -41,6 +45,7 @@ export const {
   logOut,
   tokenStillValid,
   storyDeleteSuccess, // Feature 4: Delete story from My Space
+  storyPostSuccess, // Feature 5: Post a new story with corresponding id
 } = userSlice.actions;
 
 export default userSlice.reducer;

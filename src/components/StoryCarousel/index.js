@@ -18,7 +18,7 @@ export default function StoryCarousel(props) {
             <h3>{story.name}</h3>
             <p>{story.content}</p>
             <img alt={story.name} src={story.imageUrl} />
-
+            <br />
             <button onClick={() => onDelete(story.id)}>
               Delete this story
             </button>

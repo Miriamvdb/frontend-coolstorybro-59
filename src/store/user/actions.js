@@ -8,6 +8,7 @@ import {
   logOut,
   tokenStillValid,
   storyDeleteSuccess, // Feature 4: Delete story from My Space
+  storyPostSuccess, // Feature 5: Post a new story with corresponding id
 } from "./slice";
 
 export const signUp = (name, email, password) => {
@@ -156,7 +157,41 @@ export const deleteStory = (storyId) => {
       dispatch(storyDeleteSuccess(storyId));
       dispatch(appDoneLoading());
     } catch (e) {
-      console.error(e);
+      console.log(e.message);
+    }
+  };
+};
+
+// Feature 5: Post a new story with corresponding id
+export const postNewStory = (name, content, imageUrl) => {
+  return async (dispatch, getState) => {
+    try {
+      dispatch(appLoading());
+      const { space, token } = getState().user;
+      // console.log(name, content, imageUrl);
+      console.log(space, token);
+
+      const response = await axios.post(
+        `${apiUrl}/spaces/${space.id}/stories`,
+        {
+          name,
+          content,
+          imageUrl,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log("Wanna post a new story?", response);
+      dispatch(
+        showMessageWithTimeout("Success", false, response.data.message, 3000)
+      );
+      dispatch(storyPostSuccess(response.data.story));
+      dispatch(appDoneLoading());
+    } catch (e) {
+      console.log(e.message);
     }
   };
 };
