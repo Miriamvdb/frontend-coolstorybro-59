@@ -26,9 +26,21 @@ export const userSlice = createSlice({
       state.profile = action.payload.user;
       state.space = action.payload.space; // Feature 4
     },
+    // Feature 4: Delete story from My Space
+    storyDeleteSuccess: (state, action) => {
+      const storyId = action.payload;
+      state.space.stories = state.space.stories.filter(
+        (spc) => spc.id !== storyId
+      );
+    },
   },
 });
 
-export const { loginSuccess, logOut, tokenStillValid } = userSlice.actions;
+export const {
+  loginSuccess,
+  logOut,
+  tokenStillValid,
+  storyDeleteSuccess, // Feature 4: Delete story from My Space
+} = userSlice.actions;
 
 export default userSlice.reducer;

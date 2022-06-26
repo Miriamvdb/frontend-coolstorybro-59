@@ -3,7 +3,12 @@ import axios from "axios";
 import { selectToken } from "./selectors";
 import { appLoading, appDoneLoading, setMessage } from "../appState/slice";
 import { showMessageWithTimeout } from "../appState/actions";
-import { loginSuccess, logOut, tokenStillValid } from "./slice";
+import {
+  loginSuccess,
+  logOut,
+  tokenStillValid,
+  storyDeleteSuccess, // Feature 4: Delete story from My Space
+} from "./slice";
 
 export const signUp = (name, email, password) => {
   return async (dispatch, getState) => {
@@ -126,6 +131,32 @@ export const getUserWithStoredToken = () => {
       // get rid of the token by logging out
       dispatch(logOut());
       dispatch(appDoneLoading());
+    }
+  };
+};
+
+// Feature 4: Delete story from My Space
+export const deleteStory = (storyId) => {
+  return async (dispatch, getState) => {
+    dispatch(appLoading());
+    const { space, token } = getState().user;
+    // console.log(space, token);
+    const spaceId = space.stories.id;
+
+    try {
+      const response = await axios.delete(
+        `${apiUrl}/spaces/${spaceId}/stories/${storyId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log("Story deleted?", response.data);
+      dispatch(storyDeleteSuccess(storyId));
+      dispatch(appDoneLoading());
+    } catch (e) {
+      console.error(e);
     }
   };
 };
